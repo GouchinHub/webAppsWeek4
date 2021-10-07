@@ -1,1 +1,1 @@
-[{"name":"pasta","instructions":["heat","eat"],"ingridients":["flour","meat"]},{"name":"pizza","instructions":"paista,leikkaa,syö","ingridients":"salami,kinkku,juusto,tomaatti"}]
+[{"name":"pasta","instructions":["heat","eat"],"ingridients":["flour","meat"]},{"name":"pizza","instructions":"paista,leikkaa,syö","ingridients":"salami,kinkku,juusto,tomaatti"},{"name":"kakku","instructions":"leivo,syö","ingridients":"maito,kananmuna"},{"name":"limonaadi","instructions":"sekoita,juo","ingridients":"sitruuna,vesi"}]
