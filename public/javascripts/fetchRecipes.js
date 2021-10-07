@@ -30,9 +30,14 @@ async function specificRecipeQuery(name) {
 }
 
 function listItems(items) {
-    var itemsListElement = document.createElement("li");
-    itemsListElement.appendChild(document.createTextNode(items))
-    return itemsListElement;
+    var itemsList = document.createElement("ul")
+    items.forEach(item => {
+        var itemsListElement = document.createElement("li");
+        itemsListElement.innerText = item;
+        itemsList.appendChild(itemsListElement)
+    });
+    
+    return itemsList;
 }
 
 addIncridientButton.onclick = function () {
