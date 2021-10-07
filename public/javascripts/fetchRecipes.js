@@ -11,7 +11,8 @@ var updateRecipes = function updateRecipes(){
     fetch(`/recipe/`)
         .then(res => res.json())
         .then(data => {
-            data.forEach(element => {
+            var parsed = JSON.parse(data)
+            parsed.forEach(element => {
                 createRecipe(element)
             });
         });
