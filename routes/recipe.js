@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const fs = require("fs");
 
-let recipes = exampleRecipe
+let recipes = []
 
 fs.readFile("./data/recipes.json", "utf-8", (err, data) => {
   if (err) {
