@@ -2,12 +2,6 @@ var express = require('express');
 var router = express.Router();
 const fs = require("fs");
 
-const exampleRecipe = [{
-   name: "pasta",
-   instructions: ["heat", "eat"],
-   ingridients: ["flour", "meat"]
-}];
-
 let recipes = exampleRecipe
 
 fs.readFile("./data/recipes.json", "utf-8", (err, data) => {
@@ -25,7 +19,11 @@ router.get('/', function(req, res, next) {
 
 /* GET recipe by food. */
 router.get('/:food', function(req, res, next) {
-  res.json(recipes.filter(item => {return item.name === req.params.food}));
+  res.json({
+    name: req.params.food,
+    instructions: ["heat", "eat"],
+    ingridients: ["flour", "meat"]
+ });
 });
 
 /* POST recipes. */
