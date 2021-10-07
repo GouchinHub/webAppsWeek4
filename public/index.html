@@ -16,21 +16,25 @@
     </div>
   </nav>
   <div class="container">
-    <h1>Recipe site</h1>
-    <h3>Todays recipes</h3>
-    <ul id="recipeList"></ul>
-    <input type="text" id="name-text">
-    <h4>Ingredients</h4>
-    <textarea id="ingredients-text"></textarea>
-    <button id="add-ingredient" type="button">Add ingredient</button>
-    <h4>instructions</h4>
-    <textarea id="instructions-text"></textarea>
-    <button id="add-instruction" type="button">Add instruction</button>
-    <button id="submit" type="submit">Submit</button>
+      <h1>Recipe site</h1>
+      <h3>Todays recipes</h3>
+    <div class="col">
+      <ul id="recipeList"></ul>
+    </div>
+    <div class="col">
+      <input type="text" id="name-text">
+      <h4>Ingredients</h4>
+      <textarea id="ingredients-text"></textarea>
+      <button class="btn" id="add-ingredient" type="button">Add ingredient</button>
+      <h4>instructions</h4>
+      <textarea id="instructions-text"></textarea>
+      <button class="btn" id="add-instruction" type="button">Add instruction</button>
+      <button class="btn" id="submit" type="submit">Submit</button>
+    </div>
 
     <div style="padding: 100px">
       <input type="file" id="image-input" accept="image/png, image/jpeg" multiple/>
-      <button id="submit-images" type="submit">Submit</button>
+      <button class="btn" id="submit-images" type="submit">Submit</button>
     </div>
 
     <script type="module" src="javascripts/fetchRecipes.js"></script>

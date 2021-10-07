@@ -6,13 +6,15 @@ var addIncridientButton = document.getElementById("add-ingredient");
 var addInstructionButton = document.getElementById("add-instruction");
 var submitButton = document.getElementById("submit");
 
-var updateRecipes = async function updateRecipes(){
+var updateRecipes = function updateRecipes(){
     list.innerHTML = null;
-    var recipeDataResponse = await fetch(`/recipe/`).then(res => res.json());
-    console.log(recipeDataResponse)
-    recipeDataResponse.forEach(element => {
-        createRecipe(element)
-    });
+    fetch(`/recipe/`)
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(element => {
+                createRecipe(element)
+            });
+        });
 }
 
 function createRecipe(recipeData) {
