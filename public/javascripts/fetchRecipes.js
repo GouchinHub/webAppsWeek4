@@ -7,7 +7,6 @@ var addInstructionButton = document.getElementById("add-instruction");
 var submitButton = document.getElementById("submit");
 
 var updateRecipes = async function updateRecipes(){
-    list.innerHTML = null;
     let recipe = await specificRecipeQuery("pizza")
     console.log(recipe)
     createRecipe(recipe)
