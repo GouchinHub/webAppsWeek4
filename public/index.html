@@ -1,0 +1,32 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+
+<body>
+  <h1>Restaurant</h1>
+  <p>Welcome to Restaurant</p>
+  <h3>Todays recipes</h3>
+  <ul id="recipeList"></ul>
+  <input type="text" id="name-text">
+  <h4>Ingredients</h4>
+  <textarea id="ingredients-text"></textarea>
+  <button id="add-ingredient" type="button">Add ingredient</button>
+  <h4>instructions</h4>
+  <textarea id="instructions-text"></textarea>
+  <button id="add-instruction" type="button">Add instruction</button>
+  <button id="submit" type="submit">Submit</button>
+
+  <div style="padding: 20px">
+    <input type="file" id="image-input" accept="image/png, image/jpeg" multiple/>
+    <button id="submit-images" type="submit">Submit</button>
+  </div>
+
+  <script type="module" src="javascripts/fetchRecipes.js"></script>
+  <script type="module" src="javascripts/postRecipes.js"></script>
+  <script type="module" src="javascripts/postImages.js"></script>
+</body>
+
+</html>
