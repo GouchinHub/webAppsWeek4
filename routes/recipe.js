@@ -12,11 +12,6 @@ fs.readFile("./data/recipes.json", "utf-8", (err, data) => {
   recipes = JSON.parse(data);
 })
 
-/* GET recipes. */
-router.get('/', function(req, res, next) {
-  res.json(recipes);
-});
-
 /* GET recipe by food. */
 router.get('/:food', function(req, res, next) {
   res.json({
@@ -36,7 +31,8 @@ router.post('/', function(req, res, next) {
       return
     }
   })
-  res.send(req.body)
+  console.log(req.body)
+  res.json(req.body)
 });
 
 module.exports = router;

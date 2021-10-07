@@ -17,7 +17,9 @@ function createRecipe(recipeData) {
     var recipe = document.createElement("div");
     recipeName.innerText = recipeData.name
     recipe.appendChild(recipeName);
-
+    console.log("recipeDATA:")
+    console.log(recipeData)
+    console.log(recipeData.instructions)
     recipe.appendChild(listItems(recipeData.instructions))
     recipe.appendChild(listItems(recipeData.ingridients))
 
@@ -30,8 +32,10 @@ async function specificRecipeQuery(name) {
 }
 
 function listItems(items) {
+    console.log(items)
     var itemsList = document.createElement("ul")
     items.forEach(item => {
+        console.log(item)
         var itemsListElement = document.createElement("li");
         itemsListElement.innerText = item;
         itemsList.appendChild(itemsListElement)
@@ -54,24 +58,32 @@ addInstructionButton.onclick = function () {
     instructionsArea.value = "";
 }
 
-submitButton.onclick = function () {
+submitButton.onclick = async function () {
     var nameText = document.getElementById("name-text")
     var name = nameText.value
+
+    var jsonBody = { "name": "",
+    "instructions": "[]",
+    "ingridients": "[]"
+    }
+
+    jsonBody.name = name
+    jsonBody.ingridients = ingridients
+    jsonBody.instructions = instructions
+
+    console.log("POSTING")
+    console.log(instructions)
 
     fetch("/recipe", {
         method: "post",
         headers: {"Content-type": "application/json"},
-        body: `{ "name": "${name}",
-                "instructions": "${instructions}",
-                "ingridients": "${ingridients}"
-             }`})
+        body: JSON.stringify(jsonBody) })
              .then(response => response.json())
+             .then(data => {createRecipe(data)})
 
     ingridients = [];
     instructions = [];
     nameText.value = "";
-
-    updateRecipes();
 }
 
 await updateRecipes();
