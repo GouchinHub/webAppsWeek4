@@ -87,4 +87,10 @@ submitButton.onclick = async function () {
     nameText.value = "";
 }
 
+async function updateNewRecipes(name){
+    let recipe = await fetch(`/recipe/new_recipe/${name}`).then(res => res.json());
+    console.log(recipe)
+    createRecipe(recipe)
+}
+
 await updateRecipes("pizza");
