@@ -6,8 +6,8 @@ var addIncridientButton = document.getElementById("add-ingredient");
 var addInstructionButton = document.getElementById("add-instruction");
 var submitButton = document.getElementById("submit");
 
-var updateRecipes = async function updateRecipes(){
-    let recipe = await specificRecipeQuery("pizza")
+var updateRecipes = async function updateRecipes(name){
+    let recipe = await specificRecipeQuery(name)
     console.log(recipe)
     createRecipe(recipe)
 }
@@ -32,6 +32,7 @@ async function specificRecipeQuery(name) {
 }
 
 function listItems(items) {
+    console.log("TÄ?")
     console.log(items)
     var itemsList = document.createElement("ul")
     items.forEach(item => {
@@ -79,11 +80,11 @@ submitButton.onclick = async function () {
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(jsonBody) })
              .then(response => response.json())
-             .then(data => {createRecipe(data)})
-
+             .then(data => {updateRecipes(data.name)})
+         
     ingridients = [];
     instructions = [];
     nameText.value = "";
 }
 
-await updateRecipes();
+await updateRecipes("pizza");
