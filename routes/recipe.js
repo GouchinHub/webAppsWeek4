@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const mongoose = require("mongoose");
+const Recipes = require("../models/Recipes")
 const fs = require("fs");
 
 var recipes = []
@@ -31,14 +33,21 @@ router.get('/new_recipe/:food', function(req, res, next) {
 
 /* POST recipes. */
 router.post('/', function(req, res, next) {
-  recipes.push(req.body)
-  fs.writeFile("./data/recipes.json", JSON.stringify(recipes), err => {
-    if (err) {
-      console.log(err)
-      return
-    }
+  Recipes.findOne({ name: req.body.name}, (err, name) => {
+    if(err) return next(err);
+    if(!name) {
+      new Recipes({
+        name: req.body.name,
+        instructions: req.body.instructions,
+        ingridients: req.body.ingridients
+      }).save((err) => {
+        if(err) return next(err);
+        return res.send(req.body);
+      })
+    } else {
+      return res.status(403).send("allready has the recipe")    }
   })
-  res.json(req.body)
+
 });
 
 module.exports = router;
