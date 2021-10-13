@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
-const Recipes = require("../models/Recipes")
+const Recipes = require("../models/recipes.js")
 const fs = require("fs");
 
 var recipes = []
