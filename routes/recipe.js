@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
 const Recipes = require("../models/recipes.js")
-const fs = require("fs");
+const Categories = require("../models/category.js")
 
 /* GET recipe by food. */
 router.get('/:food', function(req, res, next) {
@@ -16,7 +16,7 @@ router.get('/:food', function(req, res, next) {
   })
 });
 
-/* GET recipe by food. */
+/* GET all recipes */
 router.get('/', function(req, res, next) {
   Recipes.find({}, (err, recipes) => {
     if(err) return next(err);
@@ -36,7 +36,8 @@ router.post('/', function(req, res, next) {
       new Recipes({
         name: req.body.name,
         instructions: req.body.instructions,
-        ingridients: req.body.ingridients
+        ingridients: req.body.ingridients,
+        categories: req.body.categories
       }).save((err) => {
         if(err) return next(err);
         return res.send(req.body);

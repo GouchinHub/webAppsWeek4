@@ -1,3 +1,4 @@
+const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -5,7 +6,8 @@ const Schema = mongoose.Schema;
 let recipesSchema = new Schema({
     name: String,
     instructions: [String],
-    ingridients: [String]
+    ingridients: [String],
+    categories: [ObjectId]
 });
 
 module.exports = mongoose.model("Recipes", recipesSchema)

@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var recipeRouter = require('./routes/recipe');
+var categoryRouter = require('./routes/category');
 
 const mongoDb = (process.env.MONGO_URL || "mongodb://127.0.0.1:27017/recipedb")
 mongoose.connect(mongoDb);
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/recipe/', recipeRouter);
+app.use('/category/', categoryRouter);
 
 console.log("listening to port 1234")
 module.exports = app;
