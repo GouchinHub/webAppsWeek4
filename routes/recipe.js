@@ -4,32 +4,29 @@ const mongoose = require("mongoose");
 const Recipes = require("../models/recipes.js")
 const fs = require("fs");
 
-var recipes = []
-
-
-fs.readFile("./data/recipes.json", "utf-8", (err, data) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  recipes = JSON.parse(data);
-})
-
 /* GET recipe by food. */
 router.get('/:food', function(req, res, next) {
-  res.json({
-    name: req.params.food,
-    instructions: ["heat", "eat"],
-    ingridients: ["flour", "meat"]
-   });
+  Recipes.findOne({ name: req.params.food}, (err, recipes) => {
+    if(err) return next(err);
+    if(recipes) {
+      return res.json(recipes);
+    } else {
+      return res.status(404).send(`Recipe: ${req.params.food} not found`);
+    }
+  })
 });
 
-router.get('/new_recipe/:food', function(req, res, next) {
-  var items = recipes.filter(item => {return item.name === req.params.food})
-  res.json(items[0]);
+/* GET recipe by food. */
+router.get('/', function(req, res, next) {
+  Recipes.find({}, (err, recipes) => {
+    if(err) return next(err);
+    if(recipes) {
+      return res.json(recipes);
+    } else {
+      return res.status(404).send("Not found");
+    }
+  })
 });
-
 
 /* POST recipes. */
 router.post('/', function(req, res, next) {

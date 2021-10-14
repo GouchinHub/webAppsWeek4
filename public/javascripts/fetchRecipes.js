@@ -5,10 +5,11 @@ var list = document.getElementById("recipeList");
 var addIncridientButton = document.getElementById("add-ingredient");
 var addInstructionButton = document.getElementById("add-instruction");
 var submitButton = document.getElementById("submit");
+var recipeSearchField = document.getElementById("search")
 
-var updateRecipes = async function updateRecipes(name){
-    let recipe = await specificRecipeQuery(name)
-    console.log(recipe)
+
+var updateRecipe = async function updateRecipes(food){
+    let recipe = await recipeQuery(food)
     createRecipe(recipe)
 }
 
@@ -26,13 +27,11 @@ function createRecipe(recipeData) {
     list.appendChild(recipe)
 }
 
-async function specificRecipeQuery(name) {
-    console.log(name);
-    return fetch(`/recipe/${name}`).then(res => res.json());
+async function recipeQuery(food) {
+    return fetch(`/recipe/${food}`).then(res => res.json());
 }
 
 function listItems(items) {
-    console.log("TÄ?")
     console.log(items)
     var itemsList = document.createElement("ul")
     items.forEach(item => {
@@ -44,6 +43,13 @@ function listItems(items) {
     
     return itemsList;
 }
+
+recipeSearchField.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {
+        updateRecipe(recipeSearchField.value);
+        recipeSearchField.value = "";
+    }
+});
 
 addIncridientButton.onclick = function () {
     var incridientArea = document.getElementById("ingredients-text")
@@ -58,6 +64,8 @@ addInstructionButton.onclick = function () {
     instructions.push(instruction);
     instructionsArea.value = "";
 }
+
+
 
 submitButton.onclick = async function () {
     var nameText = document.getElementById("name-text")
@@ -80,7 +88,7 @@ submitButton.onclick = async function () {
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(jsonBody) })
              .then(response => response.json())
-             .then(data => {updateRecipes(data.name)})
+             .then(data => {updateRecipe(data.name)})
          
     ingridients = [];
     instructions = [];
@@ -92,5 +100,3 @@ async function updateNewRecipes(name){
     console.log(recipe)
     createRecipe(recipe)
 }
-
-await updateRecipes("pizza");

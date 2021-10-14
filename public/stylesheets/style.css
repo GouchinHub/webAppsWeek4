@@ -1,8 +1,13 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Style the input container */
+.topnav .search-container {
+  float: right;
 }
 
-a {
-  color: #00B7FF;
+/* Style the input field inside the navbar */
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 4px;
+  font-size: 17px;
+  border: none;
+  background-color: white;
 }
