@@ -41,10 +41,13 @@
       <button class="btn" id="submit" type="submit">Submit</button>
     </div>
 
-    <div style="padding: 100px">
-      <input type="file" id="image-input" accept="image/png, image/jpeg" multiple/>
-      <button class="btn" id="submit-images" type="submit">Submit</button>
-    </div>
+    <div style="padding: 100px"/>
+    <form action="/images" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="file" id="camera-file-input" accept="image/png, image/jpeg" multiple name="images"/>
+        <input type="submit" value="Submit" class="btn">
+      </div>
+    </form>
 
     <script type="module" src="javascripts/fetchRecipes.js"></script>
     <script type="module" src="javascripts/postImages.js"></script>

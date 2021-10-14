@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const mongoose = require("mongoose");
 const Recipes = require("../models/recipes.js")
-const Categories = require("../models/category.js")
 
 /* GET recipe by food. */
 router.get('/:food', function(req, res, next) {

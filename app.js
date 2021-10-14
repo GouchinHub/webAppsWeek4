@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var recipeRouter = require('./routes/recipe');
 var categoryRouter = require('./routes/category');
+var imagesRouter = require('./routes/images');
 
 const mongoDb = (process.env.MONGO_URL || "mongodb://127.0.0.1:27017/recipedb")
 mongoose.connect(mongoDb);
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/recipe/', recipeRouter);
 app.use('/category/', categoryRouter);
+app.use('/images/', imagesRouter);
 
 console.log("listening to port 1234")
 module.exports = app;

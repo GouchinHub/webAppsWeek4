@@ -1,18 +1,18 @@
 
-var inputElement = document.getElementById("image-input")
+var inputElement = document.getElementById("camera-file-input")
 var submitButton = document.getElementById("submit-images")
 
 var fileList = []
 
-inputElement.onchange = function(event) {
-    fileList = inputElement.files;
-}
-
 submitButton.onclick = function() {
-    var formData = new FormData
+    var reader = new FileReader();
+    var file = inputElement.files[0];
 
-    formData.append("images", fileList)
-
+    console.log(file)
+    console.log(file.name);
+    console.log(file.encoding);
+    console.log(file.type);
+    console.log(reader.readAsBinaryString(file));
     fetch("/images", {
         method: 'POST',
         headers: {
