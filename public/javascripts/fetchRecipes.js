@@ -73,7 +73,6 @@ submitButton.onclick = async function () {
     var diets = dietsForm.children;
     var checkedDiets = [];
 
-    console.log(diets)
     for (let item of diets) {
         if(item.childNodes[1].className == "checked"){
             checkedDiets.push(item.childNodes[1].value)
@@ -84,18 +83,14 @@ submitButton.onclick = async function () {
     var jsonBody = { "name": "",
     "instructions": "[]",
     "ingridients": "[]",
-    "categories": "[]"
+    "categories": "[]",
+    "images": "[]"
     }
-
-    console.log(checkedDiets)
 
     jsonBody.name = name
     jsonBody.ingridients = ingridients
     jsonBody.instructions = instructions
     jsonBody.categories = checkedDiets
-
-    console.log("POSTING")
-    console.log(instructions)
 
     fetch("/recipe", {
         method: "post",
