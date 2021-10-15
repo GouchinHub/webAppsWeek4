@@ -1,5 +1,5 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <title>Recipes</title>
   <!-- Compiled and minified CSS -->
@@ -42,10 +42,11 @@
     </div>
 
     <div style="padding: 100px"/>
-    <form action="/images" method="post" enctype="multipart/form-data">
+    <%= typeof msg != 'undefined' ? msg : '' %>
+    <form action="/images" enctype="multipart/form-data" method="POST" id="form">
       <div class="form-group">
         <input type="file" id="camera-file-input" accept="image/png, image/jpeg" multiple name="images"/>
-        <input type="submit" value="Submit" class="btn">
+        <input id="submit-form" type="submit" value="Submit" class="btn">
       </div>
     </form>
 

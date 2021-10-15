@@ -8,8 +8,6 @@ var submitButton = document.getElementById("submit");
 var recipeSearchField = document.getElementById("search")
 var dietsForm = document.getElementById("diets")
 
-var dietsList = [];
-
 var updateRecipe = async function updateRecipes(food){
     let recipe = await recipeQuery(food)
     createRecipe(recipe)
