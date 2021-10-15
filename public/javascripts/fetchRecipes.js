@@ -83,7 +83,6 @@ submitButton.onclick = async function () {
         }
      }
 
-    console.log("we here?")
     var jsonBody = { "name": "",
     "instructions": "[]",
     "ingridients": "[]",
