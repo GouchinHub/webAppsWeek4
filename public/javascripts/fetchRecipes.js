@@ -7,6 +7,7 @@ var addInstructionButton = document.getElementById("add-instruction");
 var submitButton = document.getElementById("submit");
 var recipeSearchField = document.getElementById("search")
 var dietsForm = document.getElementById("diets")
+var form = document.getElementById("form")
 
 var updateRecipe = async function updateRecipes(food){
     let recipe = await recipeQuery(food)
@@ -74,13 +75,15 @@ submitButton.onclick = async function () {
     var checkedDiets = [];
     var images = [];
 
+    await form.submit();
+
     for (let item of diets) {
         if(item.childNodes[1].className == "checked"){
             checkedDiets.push(item.childNodes[1].value)
         }
      }
 
-     
+    console.log("we here?")
     var jsonBody = { "name": "",
     "instructions": "[]",
     "ingridients": "[]",
@@ -88,12 +91,11 @@ submitButton.onclick = async function () {
     "images": "[]"
     }
 
-    var imageResponse = await fetch(`/image/${name}`).then(res => res.json());
-    console.log(imageResponse)
-    for (let item of imageResponse) {
-        images.push(item._id)
-
-     }
+    // var imageResponse = await fetch(`/image/${name}`).then(res => res.json());
+    // console.log(imageResponse)
+    // for (let item of imageResponse) {
+    //      images.push(item._id)
+    // }
 
     jsonBody.name = name
     jsonBody.ingridients = ingridients
