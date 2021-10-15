@@ -1,4 +1,3 @@
-const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -10,4 +9,4 @@ let imagesSchema = new Schema({
     buffer: Buffer
 });
 
-module.exports = mongoose.model("Images", imagesSchema)
+module.exports = mongoose.model("images", imagesSchema)
