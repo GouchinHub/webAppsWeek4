@@ -72,6 +72,7 @@ submitButton.onclick = async function () {
     var name = nameText.value
     var diets = dietsForm.children;
     var checkedDiets = [];
+    var images = [];
 
     for (let item of diets) {
         if(item.childNodes[1].className == "checked"){
@@ -87,10 +88,18 @@ submitButton.onclick = async function () {
     "images": "[]"
     }
 
+    var imageResponse = await fetch(`/image/${name}`).then(res => res.json());
+    console.log(imageResponse)
+    for (let item of imageResponse) {
+        images.push(item._id)
+
+     }
+
     jsonBody.name = name
     jsonBody.ingridients = ingridients
     jsonBody.instructions = instructions
     jsonBody.categories = checkedDiets
+    jsonBody.images = images
 
     fetch("/recipe", {
         method: "post",

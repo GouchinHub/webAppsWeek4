@@ -40,4 +40,15 @@ router.post('/', upload.array('images', 10), function(req, res, next) {
     res.render(path.join(__dirname, '../public/index'), { msg: "success" }); 
   });
   
+  router.get('/:food', function(req, res, next) {
+    Images.findOne({ name: req.params.food}, (err, image) => {
+      if(err) return next(err);
+      if(image) {
+        return res.json(image);
+      } else {
+        return res.status(404).send(`Images: ${req.params.food} not found`);
+      }
+    })
+  });
+  
   module.exports = router;
